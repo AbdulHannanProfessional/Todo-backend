@@ -13,16 +13,18 @@ const getAllTodos = async (req, res) => {
 const createTodo = async (req, res) => {
     let {title,completed} = req.body;
 
-    if(!title || !completed) {
+    if(!title) {
         res.status(400).json("title or completed is required")
-
-
+        
+        return;
     }
 
     const newTodo = await Todo.create({title, completed})
 
     res.status(200).json({ message: "todo added successfully",data: newTodo  })
 }
+
+
 
 const deleteTodo = async (req,res) => {
     let deletedTodo = await Todo.findByIdAndDelete(req.params.id)

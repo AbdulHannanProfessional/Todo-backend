@@ -7,7 +7,11 @@ const uri = process.env.MONGODB_URI;
 
 const CORS = require("cors")
 
-app.use(CORS())
+app.use(CORS({
+    origin: 'http://localhost:5173', 
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }))
 
 // database connection 
 const mongoose = require("mongoose")
