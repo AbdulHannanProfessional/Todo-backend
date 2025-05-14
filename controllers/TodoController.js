@@ -5,8 +5,13 @@ const Todo = require("../models/TodoSchema")
 
 const getAllTodos = async (req, res) => {
     try {
+
         const todos = await Todo.find({userId: req.userId});
-        res.status(200).json({ message: "All Todos fetched successfully", data: todos });
+
+        // if(!req.userId){
+        //     return res.status(404).send("No Todo Data found For this user")
+        // }
+        res.status(200).json({ message: "All Todos fetched successfully", data: todos, userId: req.userId});
     } catch (error) {
         console.error("Error in getAllTodos:", error);
         res.status(500).json({ message: "Internal Server Error" });

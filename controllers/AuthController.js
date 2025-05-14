@@ -21,11 +21,18 @@ const createUser = async (req, res) => {
 
         console.log(secret)
 
-        const token = jwt.sign({id: user._id}, secret);
+        const token = jwt.sign({id: newUser._id}, secret);
      
 
-        res.status(200).json({ message: "signed up successfully !" , data: {user: newUser, token: token} })
-
+        res.status(200).json({ 
+            message: "signed up successfully!",
+            data: {
+              user: newUser,        // ✅ newUser instead of undefined
+              token: token,
+              _id: newUser._id      // ✅ correct _id
+            }
+          })
+          
 
     } catch (err) {
         res.status(400).json({ message: `an error occured while updating : ${err} ` })
