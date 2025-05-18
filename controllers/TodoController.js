@@ -8,9 +8,9 @@ const getAllTodos = async (req, res) => {
 
         const todos = await Todo.find({userId: req.userId});
 
-        // if(!req.userId){
-        //     return res.status(404).send("No Todo Data found For this user")
-        // }
+        if(!req.userId){
+            return res.status(404).send("No Todo Data found For this user")
+        }
         res.status(200).json({ message: "All Todos fetched successfully", data: todos, userId: req.userId});
     } catch (error) {
         console.error("Error in getAllTodos:", error);
