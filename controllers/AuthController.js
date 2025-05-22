@@ -8,6 +8,12 @@ const createUser = async (req, res) => {
     if (!name && !email && !password) {
         res.status(400).json({ message: "please enter the required information" })
     }
+    const checkUser = await user.findOne({ email });
+
+    if (checkUser !== null) {
+      return res.status(400).json({ message: "User Already Exists!" });
+    }
+
     try {
         const hashpass = await bcrypt.hash(password, 10);
         console.log(hashpass)
