@@ -8,7 +8,7 @@ const uri = process.env.MONGODB_URI;
 const CORS = require("cors")
 
 app.use(CORS({
-    origin: 'https://todo-backend-8b06.onrender.com', 
+    origin: 'https://redux-todo-abdulhannan.vercel.app', 
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization']
   }))
